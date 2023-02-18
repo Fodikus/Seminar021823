@@ -228,5 +228,73 @@ Console.Write($"Неправильно сформированых символо
 
 # Заполнение диагональю.
 ```
+void InputMatrix(int[,] matrix)
+{
+    int number = 1;
+    if (matrix.GetLength(0) == matrix.GetLength(1))
+    {
+        for (int i = 1-matrix.GetLength(0); i <= matrix.GetLength(0)-1; i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                int k = j - i;
+                if (k < 0 || k >= matrix.GetLength(1))
+                    continue;
 
+                matrix[j, matrix.GetLength(1)-k-1] = number++;
+            }
+        }
+    }
+    else if (matrix.GetLength(0) > matrix.GetLength(1))
+    {
+        int r = matrix.GetLength(0) - matrix.GetLength(1);
+        for (int i = 1-matrix.GetLength(0); i <= matrix.GetLength(0)-1; i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1) + r; j++)
+            {
+                int k = j - i;
+                if (k < 0 || k >= matrix.GetLength(1))
+                    continue;
+
+                matrix[j, matrix.GetLength(1)-k-1] = number++;
+            }
+        }
+    }
+    else
+    {
+        int r = matrix.GetLength(1) - matrix.GetLength(0);
+        for (int i = 1-matrix.GetLength(0); i < matrix.GetLength(0)+r; i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1)-r; j++)
+            {
+                int k = j - i + r;
+
+                if (k < 0 || k >= matrix.GetLength(1))
+                {
+                    continue;
+                }
+
+                matrix[j, matrix.GetLength(1)-k-1] = number++;
+            }
+        }
+    }
+}
+
+void PrintMatrix(int[,] matrix)
+{
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(1); j++)
+            Console.Write($"{matrix[i, j]} \t");
+        Console.WriteLine();
+    }
+}
+
+Console.Clear();
+Console.Write("Введите размер массива: ");
+int[] size = Console.ReadLine().Split().Select(x => int.Parse(x)).ToArray();
+int[,] matrix = new int[size[0], size[1]];
+Console.WriteLine("Двумерный массив:");
+InputMatrix(matrix);
+PrintMatrix(matrix);
 ```
