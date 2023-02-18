@@ -93,7 +93,7 @@
       }
   }
 
-  void CheckOddPosition(int[,] matrix, double[] array)
+  void SummAverage(int[,] matrix, double[] array)
   {
       for (int j = 0; j < matrix.GetLength(1); j++)
       {
@@ -117,17 +117,57 @@
   InputMatrix(matrix);
   PrintMatrix(matrix);
   double[] array = new double[matrix.GetLength(1)];
-  CheckOddPosition(matrix, array);
+  SummAverage(matrix, array);
 
   Console.WriteLine($"Среднее арифметическое каждого столбца:  [{string.Join(", ", array)}]");
 ```
 
-# Транспонирование.
+# Транспонирование(https://acmp.ru/asp/do/index.asp?main=task&id_course=1&id_section=8&id_topic=120&id_problem=745).
+```
+  void InputMatrix(int[,] matrix)
+  {
+      for (int i = 0; i < matrix.GetLength(0); i++)
+      {
+          for (int j = 0; j < matrix.GetLength(1); j++)
+              matrix[i, j] = new Random().Next(0, 100);
+      }
+  }
+
+  void PrintMatrix(int[,] matrix)
+  {
+      for (int i = 0; i < matrix.GetLength(0); i++)
+      {
+          for (int j = 0; j < matrix.GetLength(1); j++)
+              Console.Write($"{matrix[i, j]} \t");
+          Console.WriteLine();
+      }
+  }
+
+  void Shift(int[,] matrix,int[,] result)
+  {
+      for (int i = 0; i < matrix.GetLength(0); i++)
+      {
+          for (int j = 0; j < matrix.GetLength(1); j++)
+          {
+              result[matrix.GetLength(0) - i - 1, j] = matrix[i, j];
+          }
+      }
+  }
+
+  Console.Clear();
+  Console.Write("Введите размер массива: ");
+  int[] size = Console.ReadLine().Split().Select(x => int.Parse(x)).ToArray();
+  int[,] matrix = new int[size[0], size[1]];
+  int[,] result = new int[size[0], size[1]];
+  Console.WriteLine("Двумерный массив:");
+  InputMatrix(matrix);
+  PrintMatrix(matrix);
+  Shift(matrix,result);
+  Console.WriteLine("Массив после Транспонирования:");
+  PrintMatrix(result);
 ```
 
-```
-
-# Миша и негатив.
+# Миша и негатив(https://acmp.ru/asp/do/index.asp?main=task&id_course=1&id_section=8&id_topic=121&id_problem=749).
 ```
 
 ```
