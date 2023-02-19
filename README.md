@@ -270,9 +270,7 @@ void InputMatrix(int[,] matrix)
                 int k = j - i + r;
 
                 if (k < 0 || k >= matrix.GetLength(1))
-                {
                     continue;
-                }
 
                 matrix[j, matrix.GetLength(1)-k-1] = number++;
             }
